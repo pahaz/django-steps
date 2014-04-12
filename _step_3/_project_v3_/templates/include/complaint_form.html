@@ -1,0 +1,11 @@
+<form action="{% url 'complaints_index' %}" method="post">
+    {% if errors %}
+        {% for e in errors %}
+            <div style="color: red">{{ e }}</div>
+        {% endfor %}
+    {% endif %}
+    {% csrf_token %}
+    <input type="text" name="url" placeholder="URL" value="{{ url }}"> <br>
+    <textarea name="content" placeholder="TEXT">{{ content }}</textarea> <br>
+    <input type="submit">
+</form>

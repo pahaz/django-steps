@@ -1,0 +1,6 @@
+<form action="{% url 'complaints_post' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="url" placeholder="URL"> <br>
+    <textarea name="content" placeholder="TEXT"></textarea> <br>
+    <input type="submit">
+</form>
