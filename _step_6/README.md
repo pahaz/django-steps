@@ -1,4 +1,4 @@
-# 6 версия - отделяем логику в отдельный апп #
+# отделяем логику в отдельный апп #
 
 * добавим поле в модель `created`/`updated`
 * python manage.py schemamigration --auto complaints

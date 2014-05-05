@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h2>Complaints</h2>
+    {% for item in complaints %}
+        {% if item.is_public %}
+        <div style="margin-bottom: 50px;">
+            <h5>{{ item.url }}</h5>
+
+            <p>{{ item.content }}</p>
+            {% if item.screen %}
+                <img src="/media/{{ item.screen }}" width="300">
+            {% endif %}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    {% include "include/complaint_form.html" %}
+{% endblock %}
