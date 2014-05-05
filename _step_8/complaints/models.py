@@ -48,6 +48,7 @@ class Timable(models.Model):
 
 class Complaint(Displayable, Contentable, Timable):
     url = models.URLField()
+    screen = models.ImageField(upload_to="complaints_img", blank=True, null=True)
 
     def __unicode__(self):
         return self.url

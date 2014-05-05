@@ -8,6 +8,9 @@
             <h5>{{ item.url }}</h5>
 
             <p>{{ item.content }}</p>
+            {% if item.screen %}
+                <img src="/media/{{ item.screen }}" width="300">
+            {% endif %}
         </div>
         {% endif %}
     {% endfor %}
