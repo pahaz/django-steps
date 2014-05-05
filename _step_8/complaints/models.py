@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from datetime import datetime
+from django import forms
 
 
 class PublishedManager(models.Manager):
@@ -52,5 +53,6 @@ class Complaint(Displayable, Contentable, Timable):
         return self.url
 
 
-class Comments(Contentable, Timable):
-    pass
+class Comment(Timable):
+    complaint = models.ForeignKey(Complaint)
+    content = models.TextField()

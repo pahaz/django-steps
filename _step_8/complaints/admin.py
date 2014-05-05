@@ -1,7 +1,13 @@
+from complaints.models import Comment
+
 __author__ = 'pahaz'
 
 from django.contrib import admin
 from complaints.models import Complaint
+
+
+class CommentsInline(admin.TabularInline):
+    model = Comment
 
 
 class ComplaintAdmin(admin.ModelAdmin):
@@ -20,7 +26,9 @@ class ComplaintAdmin(admin.ModelAdmin):
             'fields': ('created', 'updated')
         }),
     )
-
+    inlines = [
+        CommentsInline,
+    ]
 
 
 admin.site.register(Complaint, ComplaintAdmin)
