@@ -30,12 +30,27 @@ class Displayable(models.Model):
         abstract = True
 
 
-class Complaint(Displayable):
-    url = models.URLField()
+class Contentable(models.Model):
     content = models.TextField()
+
+    class Meta:
+        abstract = True
+
+
+class Timable(models.Model):
     created = models.DateTimeField(null=True, editable=False, auto_now_add=True)
     updated = models.DateTimeField(null=True, editable=False, auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class Complaint(Displayable, Contentable, Timable):
+    url = models.URLField()
 
     def __unicode__(self):
         return self.url
 
+
+class Comments(Contentable, Timable):
+    pass
