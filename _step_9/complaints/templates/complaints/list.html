@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Complaints</h2>
+    {% for item in complaints %}
+        <div style="margin-bottom: 50px;">
+            <h5>{{ item.url }}</h5>
+
+            <p>{{ item.content }}</p>
+        </div>
+    {% endfor %}
+
+    {% include "complaints/include/complaint_form.html" %}
+{% endblock %}
