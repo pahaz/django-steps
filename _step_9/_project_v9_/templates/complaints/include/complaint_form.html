@@ -1,4 +1,7 @@
-<form action="{% url 'complaints_index' %}" method="post" style="margin-top: 50px;">
+<div id="complaint_form_show" style="display: none;margin-top: 50px;">(show new form)</div>
+<div id="complaint_form_hide" style="display: none;margin-top: 50px;">(hide new form)</div>
+
+<form id="complaint_form" action="{% url 'complaints_index' %}" method="post" style="margin-top: 50px;">
     {% csrf_token %}
 
     {% if form.non_field_errors or form.errors %}
@@ -17,10 +20,10 @@
         {% else %}
             <div class="form-group input_{{ field.id_for_label }} {{ field.field.type }}
     {% if field.errors %} has-error{% endif %}">
-{#                {% if field.label %}<label class="control-label" for="{{ field.auto_id }}">{{ field.label }}#}
-{#                    </label>{% endif %}#}
+                {#                {% if field.label %}<label class="control-label" for="{{ field.auto_id }}">{{ field.label }}#}
+                {#                    </label>{% endif %}#}
 
-                    {{ field }}
+                {{ field }}
 
                 {% if field.errors %}
                     <p class="help-block">
@@ -35,6 +38,36 @@
         {% endif %}
     {% endfor %}
 
-
     <input type="submit">
 </form>
+
+<script>
+    (function ($) {
+        function init_show_hide($el, $show_btn, $hide_btn, init_hidden) {
+            function hide() {
+                $el.hide('slow');
+                $show_btn.show();
+                $hide_btn.hide();
+                return false;
+            }
+
+            function show() {
+                $el.show('slow');
+                $hide_btn.show();
+                $show_btn.hide();
+                return true;
+            }
+
+            $hide_btn.click(hide);
+            $show_btn.click(show);
+
+            var is_visible = (init_hidden) ? hide() : show();
+            return is_visible;
+        }
+
+        var $el = $('#complaint_form');
+        var $btn_show = $('#complaint_form_show');
+        var $btn_hide = $('#complaint_form_hide');
+        init_show_hide($el, $btn_show, $btn_hide, true);
+    })(jQuery);
+</script>
