@@ -29,17 +29,17 @@
     {% endblock %}
 
 
-    <div class="example-1">
-        {% complaints 2 as foo %}
-        {% for x in foo %}
-            {{ x.url }}
-            {% if not forloop.last %} | {% endif %}
-        {% endfor %}
-    </div>
+{#    <div class="example-1">#}
+{#        {% complaints 2 as foo %}#}
+{#        {% for x in foo %}#}
+{#            {{ x.url }}#}
+{#            {% if not forloop.last %} | {% endif %}#}
+{#        {% endfor %}#}
+{#    </div>#}
 
-    <div class="example-2">
-        {% complaints_urls 3 %}
-    </div>
+{#    <div class="example-2">#}
+{#        {% complaints_urls 3 %}#}
+{#    </div>#}
 
 {#    {% lorem 2 p random %}#}
 
