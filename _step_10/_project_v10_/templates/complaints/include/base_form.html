@@ -68,6 +68,8 @@
         var $el = $('#complaint_form');
         var $btn_show = $('#complaint_form_show');
         var $btn_hide = $('#complaint_form_hide');
-        init_show_hide($el, $btn_show, $btn_hide, true);
+        var init_as_visible = {% if init_as_visible %}true{% else %}false{% endif %};
+        var init_as_hidden = !init_as_visible;
+        init_show_hide($el, $btn_show, $btn_hide, init_as_hidden);
     })(jQuery);
 </script>

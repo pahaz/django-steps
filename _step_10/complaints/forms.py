@@ -21,13 +21,14 @@ class ComplainsForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-    def clean_complaint(self):
-        complaint = self.cleaned_data['complaint']
+    def clean(self):
+        cleaned_data = super(CommentForm, self).clean()
 
-        if not complaint.is_published():
-            raise forms.ValidationError(u"Вы пытаетесь написать комментарий к не опубликованной жалобе.")
+        complaint = cleaned_data.get('complaint')
+        if not complaint or (complaint and not complaint.is_published()):
+            raise forms.ValidationError(u"Вы пытаетесь написать комментарий к неопубликованной жалобе.")
 
-        return complaint
+        return cleaned_data
 
     class Meta:
         model = Comment
