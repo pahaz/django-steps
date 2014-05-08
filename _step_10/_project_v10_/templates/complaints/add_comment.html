@@ -1,0 +1,8 @@
+{% extends "index.html" %}
+
+{% block content %}
+    <h2>New comment</h2>
+    
+    {% include "complaints/include/base_form.html" with url_name='complaints_comments_add' %}
+
+{% endblock %}

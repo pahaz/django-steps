@@ -1,4 +1,4 @@
-from complaints.views import ComplaintIndexView, ComplaintDetailView
+from complaints.views import ComplaintIndexView, ComplaintDetailView, ComplaintCommentCreateView
 
 __author__ = 'pahaz'
 
@@ -15,4 +15,6 @@ urlpatterns = patterns('',
    url(r'^page/(?P<page>[0-9]+)/$', ComplaintIndexView.as_view(), name="complaints_index_page"),
    # url(r'^(?P<pk>[0-9]+)/$', "complaints.views.detail", name="complaints_detail"),
    url(r'^(?P<pk>[0-9]+)/$', ComplaintDetailView.as_view(), name="complaints_detail"),
+
+   url(r'^comments/add/$', ComplaintCommentCreateView.as_view(), name='complaints_comments_add'),
 )

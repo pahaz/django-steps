@@ -21,9 +21,18 @@ class ComplainsForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    def clean_complaint(self):
+        complaint = self.cleaned_data['complaint']
+
+        if not complaint.is_published():
+            raise forms.ValidationError(u"Вы пытаетесь написать комментарий к не опубликованной жалобе.")
+
+        return complaint
+
     class Meta:
         model = Comment
-        fields = ('content',)
+        fields = ('content', 'complaint')
         widgets = {
-            'content':forms.TextInput(attrs={'placeholder': 'message'}),
+            'content': forms.TextInput(attrs={'placeholder': 'message'}),
+            'complaint': forms.HiddenInput(),
         }

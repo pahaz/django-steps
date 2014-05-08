@@ -28,5 +28,5 @@
         <h2>No complaints</h2>
     {% endif %}
 
-    {% include "complaints/include/complaint_form.html" %}
+    {% include "complaints/include/base_form.html" with url_name='complaints_index' %}
 {% endblock %}

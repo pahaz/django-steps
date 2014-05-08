@@ -1,7 +1,7 @@
 <div id="complaint_form_show" style="display: none;margin-top: 50px;">(show new form)</div>
 <div id="complaint_form_hide" style="display: none;margin-top: 50px;">(hide new form)</div>
 
-<form id="complaint_form" action="{% url 'complaints_index' %}" method="post" style="margin-top: 50px;">
+<form id="complaint_form" action="{% url url_name %}" method="post" style="margin-top: 50px;">
     {% csrf_token %}
 
     {% if form.non_field_errors or form.errors %}

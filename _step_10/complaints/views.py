@@ -1,11 +1,12 @@
 # coding=utf-8
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, resolve_url, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, View
 from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.list import MultipleObjectMixin
-from complaints.forms import ComplainsForm
+from complaints.forms import ComplainsForm, CommentForm
 from complaints.models import Complaint
 from utils.views import LoginRequiredMixin
 
@@ -78,5 +79,7 @@ class ComplaintIndexView(MultipleObjectMixin, CreateView):
 ###################
 
 
-class CommentCreateView(CreateView):
-    pass
+class ComplaintCommentCreateView(CreateView):
+    form_class = CommentForm
+    template_name = "complaints/add_comment.html"
+    # success_url = self.object.get_absolute_url()

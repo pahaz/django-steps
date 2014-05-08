@@ -1,5 +1,6 @@
 import datetime
 from django import template
+from complaints.forms import CommentForm
 from complaints.models import Complaint
 
 __author__ = 'pahaz'
@@ -52,3 +53,8 @@ def complaints(context, count_complaints):
         </div>
     """
     return Complaint.objects.all()[:count_complaints]
+
+
+@register.assignment_tag
+def complaint_comment_form_for(complaint):
+    return CommentForm(initial={'complaint': complaint})

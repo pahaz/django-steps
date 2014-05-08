@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from datetime import datetime
@@ -26,6 +27,11 @@ class Displayable(models.Model):
 
     objects = PublishedManager()
 
+    def is_published(self):
+        now = datetime.now()
+        return self.is_public and (self.publish_date is None or self.publish_date < now) \
+            and (self.expiry_date is None or self.expiry_date > now)
+
     class Meta:
         abstract = True
 
@@ -46,7 +52,13 @@ class Complaint(Displayable, Timable):
     def __unicode__(self):
         return self.url
 
+    def get_absolute_url(self):
+        return reverse('complaints_detail', args=(self.pk,))
+
 
 class Comment(Timable):
     complaint = models.ForeignKey(Complaint)
     content = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('complaints_detail', args=(self.complaint_id,))
