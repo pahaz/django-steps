@@ -70,6 +70,9 @@ class ComplaintIndexView(MultipleObjectMixin, CreateView):
         context = super(ComplaintIndexView, self).get_context_data(**kwargs)
         return context
 
+    def post(self, request, *args, **kwargs):
+        return super(ComplaintIndexView, self).post(request, *args, **kwargs)
+
 
 ###################
 #                 #
