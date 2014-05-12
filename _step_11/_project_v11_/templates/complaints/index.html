@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {% if complaints %}
+        <h2>Complaints</h2>
+        {% for item in complaints %}
+            <div style="margin-bottom: 50px;">
+                <h5>{{ item.url }}</h5>
+                <a href="{% url 'complaints_detail' item.pk %}">(show details)</a>
+            </div>
+        {% endfor %}
+
+        {% if is_paginated %}
+            <div>
+                    {% if page_obj.has_previous %}
+                        <span class="page"><a href="{% url 'complaints_index_page' page_obj.previous_page_number %}">&lt; previous</a></span>
+                    {% endif %}
+                    <span class="page-current">
+                        [ {{ page_obj.number }} / {{ page_obj.paginator.num_pages }} ]
+                    </span>
+                    {% if page_obj.has_next %}
+                        <span class="page"><a href="{% url 'complaints_index_page' page_obj.next_page_number %}">next &gt;</a></span>
+                    {% endif %}
+            </div>
+        {% endif %}
+
+    {% else %}
+        <h2>No complaints</h2>
+    {% endif %}
+
+    {% include "complaints/include/base_form.html" with url_name='complaints_index' %}
+{% endblock %}
