@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'south',
     'complaints',
+    'customauth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -100,3 +101,5 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+AUTH_USER_MODEL = 'customauth.User'

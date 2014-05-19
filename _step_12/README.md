@@ -1,15 +1,11 @@
-# добавляем комменты и форму отправки коммента #
+# добавляем модель пользователи, регистрация, права пользователей, группы #
 
-* добавим templates tag `complaint_comment_form_for`
-* добавим view обработчик в urls
-* рассказать про Контралл+О в ИДЕ
-* добавим проверку `is_published` в форме
-* добавим `get_absolute_url` и `is_published` в моделе
-* добавить base_form.html
+Делаем собственную модель пользователя в `customauth`.
 
-+ добавим кол-во комментов в админке
-+ добавим preview screen в админке
+https://docs.djangoproject.com/en/dev/topics/auth/customizing/#a-full-example - пример
 
+User: qw@qw.qq:qwer
 
-# (next) добавляем модель пользователи, регистрация, права пользователей, группы #
+AUTH_USER_MODEL = 'customauth.User'
+
 # (next) ContentType - generic комменты #
