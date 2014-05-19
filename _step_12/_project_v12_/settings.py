@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'south',
     'complaints',
     'customauth',
+    'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (

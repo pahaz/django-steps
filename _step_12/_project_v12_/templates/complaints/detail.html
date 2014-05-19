@@ -18,5 +18,7 @@
     {% if user.is_authenticated %}
         {% complaint_comment_form_for item as comment_form %}
         {% include "complaints/include/base_form.html" with form=comment_form url_name='complaints_comments_add' init_as_visible=False %}
+    {% else %}
+        <h2>Только зарегистрированные пользователи могут оставлять комментарии. <a href="{% url "login" %}">Войти</a></h2>
     {% endif %}
 {% endblock %}

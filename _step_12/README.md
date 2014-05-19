@@ -6,5 +6,6 @@ User: qw@qw.qq:qwer
 AUTH_USER_MODEL = 'customauth.User'
 
  * Комментировать могут только зарегистрированные пользователи.
+Используется `django-widget-tweaks` для вывода формы.
 
 # (next) ContentType - generic комменты #

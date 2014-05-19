@@ -1,3 +1,4 @@
 django==1.6.2
 south==0.8.4
 django-debug-toolbar
+django-widget-tweaks  # for template tags
