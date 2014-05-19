@@ -15,10 +15,8 @@
         {% for x in item.comment_set.all %}<p>{{ x.content }}</p> {% endfor %}
     </div>
 
-    {% complaint_comment_form_for item as comment_form %}
-
-    {% include "complaints/include/base_form.html" with form=comment_form url_name='complaints_comments_add' init_as_visible=False %}
-    {#  TODO: comments  #}
-
-
+    {% if user.is_authenticated %}
+        {% complaint_comment_form_for item as comment_form %}
+        {% include "complaints/include/base_form.html" with form=comment_form url_name='complaints_comments_add' init_as_visible=False %}
+    {% endif %}
 {% endblock %}

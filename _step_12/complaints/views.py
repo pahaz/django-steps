@@ -79,7 +79,7 @@ class ComplaintIndexView(MultipleObjectMixin, CreateView):
 ###################
 
 
-class ComplaintCommentCreateView(CreateView):
+class ComplaintCommentCreateView(LoginRequiredMixin, CreateView):
     form_class = CommentForm
     template_name = "complaints/add_comment.html"
     # success_url = self.object.get_absolute_url()
