@@ -77,7 +77,7 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '__data_project_v12__', 'db.sqlite3'),
     }
 }
 
@@ -100,7 +100,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '__data_project_v12__', 'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'customauth.User'
