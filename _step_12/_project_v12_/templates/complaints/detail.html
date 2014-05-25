@@ -4,7 +4,7 @@
 {% block content %}
     <h2>Complaint: {{ item.url }} <a href="{{ item.url }}">(link)</a></h2>
     {% if item.screen %}
-        <img src="/media/{{ item.screen }}" width="300">
+        <img src="{{ MEDIA_URL }}{{ item.screen }}" width="300">
     {% endif %}
 
     <div style="margin-bottom: 50px;">
