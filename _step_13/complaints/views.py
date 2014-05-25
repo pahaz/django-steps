@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, View
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.list import MultipleObjectMixin
-from complaints.forms import ComplainsForm, CommentForm
+from complaints.forms import ComplainsForm
 from complaints.models import Complaint
 from utils.views import LoginRequiredMixin
 
