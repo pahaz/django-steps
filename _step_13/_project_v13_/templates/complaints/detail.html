@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load complaints_tags %}
+
+{% block content %}
+    <h2>Complaint: {{ item.url }} <a href="{{ item.url }}">(link)</a></h2>
+    {% if item.screen %}
+        <img src="{{ MEDIA_URL }}{{ item.screen }}" width="300">
+    {% endif %}
+
+    <div style="margin-bottom: 50px;">
+        <p>{{ item.content }}</p>
+    </div>
+
+    <div>
+        {% for x in item.comment_set.all %}<p>{{ x.content }}</p> {% endfor %}
+    </div>
+
+    {% if user.is_authenticated %}
+        {% complaint_comment_form_for item as comment_form %}
+        {% include "complaints/include/base_form.html" with form=comment_form url_name='complaints_comments_add' init_as_visible=False %}
+    {% else %}
+        <h2>Только зарегистрированные пользователи могут оставлять комментарии. <a href="{% url "login" %}">Войти</a></h2>
+    {% endif %}
+{% endblock %}

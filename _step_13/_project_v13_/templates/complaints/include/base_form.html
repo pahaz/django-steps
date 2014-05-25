@@ -1,0 +1,75 @@
+<div id="complaint_form_show" style="display: none;margin-top: 50px;">(show new form)</div>
+<div id="complaint_form_hide" style="display: none;margin-top: 50px;">(hide new form)</div>
+
+<form id="complaint_form" action="{% url url_name %}" method="post" style="margin-top: 50px;">
+    {% csrf_token %}
+
+    {% if form.non_field_errors or form.errors %}
+        <div class="form-errors">
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger non-field-error">{{ error }}</div>
+            {% empty %}
+                <div class="alert alert-danger field-error">Please correct the errors below.</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% for field in form %}
+        {% if field.is_hidden %}
+            {{ field }}
+        {% else %}
+            <div class="form-group input_{{ field.id_for_label }} {{ field.field.type }}
+    {% if field.errors %} has-error{% endif %}">
+                {#                {% if field.label %}<label class="control-label" for="{{ field.auto_id }}">{{ field.label }}#}
+                {#                    </label>{% endif %}#}
+
+                {{ field }}
+
+                {% if field.errors %}
+                    <p class="help-block">
+                        {% for e in field.errors %}
+                            {% if not forloop.first %} / {% endif %}{{ e }}
+                        {% endfor %}
+                    </p>
+                {% elif field.help_text %}
+                    <p class="help-block">{{ field.help_text }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <input type="submit">
+</form>
+
+<script>
+    (function ($) {
+        function init_show_hide($el, $show_btn, $hide_btn, init_hidden) {
+            function hide() {
+                $el.hide('slow');
+                $show_btn.show();
+                $hide_btn.hide();
+                return false;
+            }
+
+            function show() {
+                $el.show('slow');
+                $hide_btn.show();
+                $show_btn.hide();
+                return true;
+            }
+
+            $hide_btn.click(hide);
+            $show_btn.click(show);
+
+            var is_visible = (init_hidden) ? hide() : show();
+            return is_visible;
+        }
+
+        var $el = $('#complaint_form');
+        var $btn_show = $('#complaint_form_show');
+        var $btn_hide = $('#complaint_form_hide');
+        var init_as_visible = {% if init_as_visible %}true{% else %}false{% endif %};
+        var init_as_hidden = !init_as_visible;
+        init_show_hide($el, $btn_show, $btn_hide, init_as_hidden);
+    })(jQuery);
+</script>
