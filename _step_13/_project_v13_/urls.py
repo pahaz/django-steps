@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='home'),
     url(r'^complaints/', include("complaints.urls")),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^comments/', include("comments.urls")),
 )
 
 urlpatterns += auth_urlpatterns

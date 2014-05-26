@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'south',
     'complaints',
     'customauth',
+    'comments',
     'widget_tweaks',
 )
 
@@ -104,3 +105,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '__data_project_v13__', 'media')
 MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'customauth.User'
+LOGIN_REDIRECT_URL = '/'

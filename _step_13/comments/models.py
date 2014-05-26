@@ -14,8 +14,12 @@ class Comment(models.Model):
     message = models.TextField("Comment")
 
     user = models.ForeignKey(get_user_model())
+
     created = models.DateTimeField(null=True, editable=False, auto_now_add=True)
     updated = models.DateTimeField(null=True, editable=False, auto_now=True)
 
+    def get_absolute_url(self):
+        return self.content_object.get_absolute_url()
+
     def __unicode__(self):
-        return self.comment
+        return self.message

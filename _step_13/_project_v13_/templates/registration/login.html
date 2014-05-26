@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <form action="{% url "login" %}">
+    <form action="{% url "login" %}" method="post">
         {{ form.non_field_errors }}
         {{ form.username.errors }}
         {{ form.password.errors }}
@@ -11,6 +11,7 @@
 
         {% render_field form.username placeholder=form.username.label %}
         {% render_field form.password placeholder=form.password.label %}
+        <input type="submit"/>
     </form>
 
 
